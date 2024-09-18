@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   roots: ['./src'],
   testRegex: 'spec\\.(j|t)sx?$',
   collectCoverage : true,
