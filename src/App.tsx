@@ -1,8 +1,9 @@
 import React from 'react';
+import { Tile } from './Tile';
 
 export function App() {
 
   return (
-    <div>Mondrian</div>
+    <Tile level={0} />
   );
 }

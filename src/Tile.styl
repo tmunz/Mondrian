@@ -1,0 +1,59 @@
+.tile {
+  --buttonSize: 10%;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  .grid {
+    display: grid;
+    width: 100%;
+    height: 100%;
+  }
+
+  .controls {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--buttonSize) 1fr var(--buttonSize);
+    grid-template-rows: var(--buttonSize) 1fr var(--buttonSize);
+    grid-template-areas: "b1 . b2" ". . ." "b3 . b4";
+    cursor: pointer;
+
+    &:hover {
+      button {
+        display: block;
+      }
+    }
+
+    button {
+      display: none;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      &:nth-child(1) {
+        grid-area: b1;
+      }
+
+      &:nth-child(2) {
+        grid-area: b2;
+      }
+
+      &:nth-child(3) {
+        grid-area: b3;
+      }
+
+      &:nth-child(4) {
+        grid-area: b4;
+      }
+    }
+
+    .crosshair {
+      position: absolute;
+      background-color: white;
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+  }
+}
