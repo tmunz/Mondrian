@@ -12,7 +12,7 @@ export const Tile = ({
   level,
   colors = ['#ffffff', '#225095', '#dd0100', '#fac901'],
   gridColor = '#000000',
-  gap = 4,
+  gap = 8,
 }: TileProps) => {
   const [gridTemplate, setGridTemplate] = useState<{ columns: number[], rows: number[] } | null>(null);
   const [indicator, setIndicator] = useState<{ x: number | null; y: number | null }>({ x: null, y: null });
@@ -101,6 +101,7 @@ export const Tile = ({
               left: 0,
               width: '100%',
               height: 2,
+              transform: 'translateY(-50%)',
             }}
           />}
           {indicator.x && <div
@@ -110,6 +111,7 @@ export const Tile = ({
               left: indicator.x,
               width: 2,
               height: '100%',
+              transform: 'translateX(-50%)',
             }}
           />}
         </div>
