@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 
 interface TileProps {
   level: number;
-  colors?: string[];
+  colors?: [string, string?, string?, string?, string?];
   gridColor?: string;
   gap?: number;
 }
 
+const DEFAULT_COLOR = '#fffffa';
+
 export const Tile = ({
   level,
-  colors = ['#ffffff', '#225095', '#dd0100', '#fac901'],
+  colors = [DEFAULT_COLOR, '#225095', '#dd0100', '#fac901', '#14080e'],
   gridColor = '#000000',
   gap = 8,
 }: TileProps) => {
@@ -60,7 +62,7 @@ export const Tile = ({
   if (level === 0) {
     backgroundColor = gridColor;
   } else if (!gridTemplate) {
-    backgroundColor = colors[colorIndex];
+    backgroundColor = colors[colorIndex] ?? DEFAULT_COLOR;
   }
 
   return (
@@ -87,12 +89,10 @@ export const Tile = ({
           onMouseLeave={handleMouseLeave}
           style={{ backgroundColor }}
         >
-          {level != 0 && colors.map((c, i) => (
-            <button
-              key={i}
-              style={{ backgroundColor: c }}
-              onClick={() => setColorIndex(i)}
-            />
+          {level != 0 && colors.slice(0, 4).map((c, i) => (
+            i === colorIndex && colors.length > 4 ?
+              <button key={4} style={{ backgroundColor: colors[4] }} onClick={() => setColorIndex(4)} /> :
+              <button key={i} style={{ backgroundColor: c }} onClick={() => setColorIndex(i)} />
           ))}
           {indicator.y && <div
             className="crosshair crosshair-horizontal"
