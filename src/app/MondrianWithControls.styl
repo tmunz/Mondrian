@@ -17,7 +17,6 @@
     bottom: 0;
     padding: 0 calc(var(--controlOverlap));
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     overflow: auto;
     display: grid;
@@ -33,6 +32,19 @@
       font-family: 'Theo Van Doesburg';
       letter-spacing: 0.2em;
       font-size: 0.8em;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 4px;
+      transform: translate(-50%, -50%);
+      background-color: #ffffff;
+      mix-blend-mode: difference;
+      border-radius: 50%;
+      width: 6px;
+      aspect-ratio: 1;
     }
 
     &:hover {
