@@ -1,21 +1,15 @@
 import './Tile.styl';
 import React, { useState } from 'react';
 
-interface TileProps {
-  level: number;
-  colors?: [string, string?, string?, string?, string?];
-  gridColor?: string;
-  gap?: number;
+export interface TileProps {
+  colors: string[];
+  gridColor: string;
+  gap: number;
+  level?: number;
 }
 
-const DEFAULT_COLOR = '#fffffa';
 
-export const Tile = ({
-  level,
-  colors = [DEFAULT_COLOR, '#225095', '#dd0100', '#fac901', '#14080e'],
-  gridColor = '#000000',
-  gap = 8,
-}: TileProps) => {
+export const Tile = ({ colors, gridColor, gap, level = 0 }: TileProps) => {
   const [gridTemplate, setGridTemplate] = useState<{ columns: number[], rows: number[] } | null>(null);
   const [indicator, setIndicator] = useState<{ x: number | null; y: number | null }>({ x: null, y: null });
   const [colorIndex, setColorIndex] = useState(0);
@@ -62,7 +56,7 @@ export const Tile = ({
   if (level === 0) {
     backgroundColor = gridColor;
   } else if (!gridTemplate) {
-    backgroundColor = colors[colorIndex] ?? DEFAULT_COLOR;
+    backgroundColor = colors[colorIndex] ?? colors[0]; // 0 > DEFAULT_INDEX
   }
 
   return (
@@ -78,12 +72,12 @@ export const Tile = ({
           }}
         >
           {new Array((gridTemplate?.columns.length ?? 0) * (gridTemplate?.rows.length ?? 0)).fill(0).map((_, index) => (
-            <Tile key={index} level={level + 1} colors={colors} gap={gap} />
+            <Tile key={index} level={level + 1} colors={colors} gap={gap} gridColor={gridColor} />
           ))}
         </div>
       ) : (
         <div
-          className='controls'
+          className='color-controls'
           onClick={handleClick}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
