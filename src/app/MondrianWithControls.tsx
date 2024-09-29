@@ -58,7 +58,7 @@ export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) 
         style={{ backgroundColor: gridColor, gap }}
       >
         <div className='grid-color'>
-          <label>grid</label>
+          <label>Grid Color</label>
           <input
             type='color'
             value={gridColor}
@@ -69,7 +69,7 @@ export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) 
 
         {colors.map((color, i) => (
           <div key={i} className={`color-picker color-picker-${i}`}>
-            <label>{i + 1}</label>
+            <label>-- {i + 1} --</label>
             <input
               type='color'
               value={color}
@@ -80,7 +80,7 @@ export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) 
         ))}
 
         <div className='gap'>
-          <label>gap</label>
+          <label>Gap</label>
           <input
             type='number'
             value={gap}
