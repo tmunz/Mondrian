@@ -3,11 +3,12 @@ import React, { useRef, useState } from 'react';
 import { DEFAULT as MondrianDefaultProps, Mondrian, MondrianRef } from './Mondrian';
 import domtoimage from 'dom-to-image';
 
-export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) => {
+export const MondrianWithControls = () => {
   const mondrianRef = useRef<MondrianRef | null>(null);
   const [gridColor, setGridColor] = useState(MondrianDefaultProps.gridColor);
   const [colors, setColors] = useState(MondrianDefaultProps.colors);
   const [gap, setGap] = useState(MondrianDefaultProps.gap);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleColorChange = (index: number, value: string) => {
     const updatedColors = [...colors];
@@ -54,8 +55,12 @@ export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) 
 
   return (
     <div className='mondrian-with-controls'>
-      <div className='mondrian-controls'
+      <div
+        className={`mondrian-controls ${isOpen ? 'open' : ''}`}
         style={{ backgroundColor: gridColor, gap }}
+        onClick={(e) => { if (e.target === e.currentTarget) { setIsOpen(s => !s); } }}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         <div className='grid-color'>
           <label>Grid Color</label>
@@ -105,6 +110,6 @@ export const MondrianWithControls = ({ maxColors = 5 }: { maxColors?: number }) 
         </button>
       </div>
       <Mondrian ref={mondrianRef} colors={colors} gridColor={gridColor} gap={gap} />
-    </div>
+    </div >
   );
 };

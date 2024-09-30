@@ -27,8 +27,15 @@
     transition: transform 0.6s ease-in-out;
     box-sizing: border-box;
     transform: translateX(calc(-100% + var(--controlOverlap)));
+    cursor: pointer;
 
-    * {
+    &.open {
+      transform: translateX(0);
+    }
+
+    input,
+    button,
+    label {
       font-family: 'Edwarstile Signature';
       font-size: 48px;
     }
@@ -44,10 +51,6 @@
       border-radius: 50%;
       width: 6px;
       aspect-ratio: 1;
-    }
-
-    &:hover {
-      transform: translateX(0);
     }
 
     &>* {
@@ -93,7 +96,7 @@
 
       &:hover {
         background: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
+        transform: translateY(-1px);
       }
 
       &:disabled {
