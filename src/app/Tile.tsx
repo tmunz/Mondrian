@@ -1,4 +1,4 @@
-import './Tile.styl';
+import './Tile.css';
 import React, { useState } from 'react';
 
 export interface TileProps {
@@ -14,12 +14,12 @@ export const Tile = ({ colors, gridColor, gap, level = 0 }: TileProps) => {
   const [indicator, setIndicator] = useState<{ x: number | null; y: number | null }>({ x: null, y: null });
   const [colorIndex, setColorIndex] = useState(0);
 
-  const calculateSplit = (e: React.MouseEvent<HTMLDivElement>): { columns: number[], rows: number[] } => {
-    const { offsetX, offsetY, target } = e.nativeEvent;
-    const { width, height } = { width: (target as any).offsetWidth, height: (target as any).offsetHeight };
+  const calculateSplit = (e: React.MouseEvent<HTMLElement>): { columns: number[], rows: number[] } => {
+    const { offsetX, offsetY, target} = e.nativeEvent;
+    const { width, height } = { width: (target as HTMLElement).offsetWidth, height: (target as HTMLElement).offsetHeight };
     const minDistance = 0.1;
     const columns = offsetX < width * minDistance || offsetX > width * (1 - minDistance) ? [offsetX] : [offsetX, width - offsetX];
-    const rows = offsetY < width * minDistance || offsetY > height * (1 - minDistance) ? [offsetY] : [offsetY, height - offsetY];
+    const rows = offsetY < height * minDistance || offsetY > height * (1 - minDistance) ? [offsetY] : [offsetY, height - offsetY];
     return (columns.length === 1 && rows.length === 1) ? { columns: [], rows: [] } : { columns, rows };
   }
 

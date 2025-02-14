@@ -1,4 +1,4 @@
-import './MondrianWithControls.styl';
+import './MondrianWithControls.css';
 import React, { useRef, useState } from 'react';
 import { DEFAULT as MondrianDefaultProps, Mondrian, MondrianRef } from './Mondrian';
 import domtoimage from 'dom-to-image';

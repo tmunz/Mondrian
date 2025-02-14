@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 
-import './index.styl';
+import './index.css';
 
 const appElement = document.getElementById('app');
 if (appElement) {
